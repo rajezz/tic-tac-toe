@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { REDUCER_ACTION_UPDATE_NAME } from "_data/session";
+
 function EditIcon() {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20">
@@ -28,23 +30,40 @@ interface PlayerInfoProps {
 	sessionDispatch: any;
 }
 
-export default function PlayerInfo({playerId, sessionDispatch}: PlayerInfoProps) {
+export default function PlayerInfo({ playerId, sessionDispatch }: PlayerInfoProps) {
 	const [playerEditStatus, setPlayerEditStatus] = useState(false);
 
 	const [playerName, setPlayerName] = useState(defaultPlayerName(playerId));
 
 	const playerNameChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setPlayerName(event.target.value);
-		sessionDispatch({});
 	};
 
 	const playerEditStatusChanged = () => {
+		if (playerEditStatus) {
+			//Update button clicked....
+			sessionDispatch({
+				type: REDUCER_ACTION_UPDATE_NAME,
+				playerId,
+				playerName
+			});
+		}
 		setPlayerEditStatus(!playerEditStatus);
 		if (playerName === "") {
 			setPlayerName(defaultPlayerName(playerId));
+			sessionDispatch({
+				type: REDUCER_ACTION_UPDATE_NAME,
+				playerId,
+				playerName: defaultPlayerName(playerId)
+			});
 		}
-		sessionDispatch({});
-	};
+    };
+    
+    const onKeyEnter = (e: any) => {
+        if (e.key === "Enter") {
+            playerEditStatusChanged()
+        }
+    }
 
 	return (
 		<div className="player-panel">
@@ -53,7 +72,8 @@ export default function PlayerInfo({playerId, sessionDispatch}: PlayerInfoProps)
 				className={`edit-name`}
 				disabled={!playerEditStatus}
 				value={playerName}
-				onChange={playerNameChanged}
+                onChange={playerNameChanged}
+                onKeyDown={onKeyEnter}
 			/>
 			<button className="icon-btn" onClick={playerEditStatusChanged}>
 				{playerEditStatus ? <DoneIcon /> : <EditIcon />}

@@ -1,5 +1,7 @@
 import { ISessionState } from "types/Game"
 
+export const REDUCER_ACTION_UPDATE_NAME = "UPDATE-NAME"
+
 export const initialSession: ISessionState = {
 	gameInProgress: false,
 	currentPlayer: null,
