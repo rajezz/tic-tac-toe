@@ -81,23 +81,16 @@ body {
 	max-width: 100vw;
 	overflow-x: hidden;
 	font-size: 14px;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-		"Open Sans", "Helvetica Neue", sans-serif;
 }
 
-body {
-	color: rgb(var(--foreground-rgb));
+body * {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+		"Open Sans", "Helvetica Neue", sans-serif;
 }
 
 a {
 	color: inherit;
 	text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-	html {
-		color-scheme: dark;
-	}
 }
 
 /*  */
@@ -118,6 +111,15 @@ a {
 	flex-direction: column;
 	align-content: center;
 	justify-content: space-between;
+}
+
+.main-content {
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	height: max-content;
+	width: 100%;
+	justify-items: center;
+	height: inherit;
 }
 
 header,
@@ -172,4 +174,101 @@ footer a:hover {
 	align-content: space-evenly;
 	grid-template-columns: repeat(3, 1fr);
 	justify-items: center;
+}
+
+.sidebar {
+	width: 100%;
+	padding: 20px;
+	height: 100%;
+	background-color: #f1faff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.game-board {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.action-panel {
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-bottom: 2rem;
+}
+
+.action-btn {
+	width: 100%;
+	margin-top: 1.5rem;
+	padding: 10px 20px;
+	border: none;
+	background-color: #daf2ff;
+	border-radius: 40px;
+	text-transform: uppercase;
+	font-weight: 500;
+	letter-spacing: 0.15em;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+}
+
+.action-btn:hover {
+	background-color: #cfeeff;
+}
+
+.player-title {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: #8c8c8c;
+	margin-bottom: 1rem;
+	width: 80%;
+	padding-left: 0.75rem;
+	margin-top: 2rem;
+}
+
+.player-panel {
+	display: flex;
+	flex-direction: row;
+	width: 80%;
+	justify-content: space-between;
+	margin-bottom: 2rem;
+}
+
+.hide {
+	display: none !important;
+}
+
+.icon-btn {
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+}
+
+.icon-btn svg {
+	fill: #656565;
+}
+
+.icon-btn:hover svg {
+	fill: #222222;
+}
+
+.edit-name {
+	border-radius: 6px;
+	background-color: #ffffff;
+	border: 1px solid #bee9ff;
+	padding: 5px 10px;
+	width: calc(100% - 40px);
+	font-weight: 500;
+}
+
+.edit-name:disabled {
+	border-color: transparent;
+	background: transparent;
+}
+
+.m-t-2 {
+	margin-top: 2rem;
 }

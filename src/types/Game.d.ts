@@ -2,15 +2,22 @@ const playerA: string = "A";
 const playerB: string = "B";
 
 export interface IBlock {
-	ID: string
-	providedValue: null | playerA | playerB
+	ID: string;
+	providedValue: "" | playerA | playerB;
 }
 
 export interface IPlayer {
-    ID: playerA | playerB;
-    name: string;
+	ID: playerA | playerB;
+	name: string;
 }
 
 export interface IGame {
-    currentPlayer: playerA | playerB
+	currentPlayer: "" | playerA | playerB;
+}
+
+export interface ISessionState {
+	gameInProgress: boolean;
+	currentPlayer: any;
+	playersInfo: Array<IPlayer>;
+	blocksInfo: Array<IBlock>;
 }
