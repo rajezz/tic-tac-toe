@@ -2,13 +2,13 @@ import React, { useReducer } from "react";
 import Block from "components/Block";
 import { IPlayer, IBlock } from "types/Game";
 import { initialSession } from "_data/session";
-import { reducer } from 'lib/SessionReducer';
-import Sidebar from "components/Sidebar"
+import { reducer } from "lib/SessionReducer";
+import Sidebar from "components/Sidebar";
 
 const blocks: Array<string> = ["00", "01", "02", "10", "11", "12", "20", "21", "22"];
 
 export default function GameWindow() {
-	const [session, sessionDispatch] = useReducer(reducer, initialSession)
+	const [session, sessionDispatch] = useReducer(reducer, initialSession);
 
 	return (
 		<div className="main-content">

@@ -61,15 +61,15 @@ export default function PlayerInfo({ playerId, sessionDispatch }: PlayerInfoProp
     
     const onKeyEnter = (e: any) => {
         if (e.key === "Enter") {
-            playerEditStatusChanged()
+            playerEditStatusChanged();
         }
-    }
+    };
 
 	return (
 		<div className="player-panel">
 			<input
 				type="text"
-				className={`edit-name`}
+				className={"edit-name"}
 				disabled={!playerEditStatus}
 				value={playerName}
                 onChange={playerNameChanged}
