@@ -33,6 +33,7 @@ export default function GameWindow() {
 			)}
 			<Sidebar
 				currentPlayer={session.currentPlayer}
+				playerList={session.playersList}
 				gameInProgress={session.gameInProgress}
 				sessionDispatch={sessionDispatch}
 			/>

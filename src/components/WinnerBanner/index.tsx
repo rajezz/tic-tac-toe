@@ -16,7 +16,7 @@ export default function WinnerBanner({ winner, sessionDispatch }: WinnerBannerPr
 		<div className="winner-overlay">
 			<div className="modal-panel">
 				<div className="announcement-panel">
-					Player - <span className="winner-name">{winner}</span> won the match 🎉
+					<span className="winner-name">{winner}</span> won the match 🎉
 				</div>
 				<button className="transparent action-btn" onClick={newGameBtnClicked}>
 					New Game

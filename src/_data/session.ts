@@ -6,6 +6,14 @@ export const REDUCER_ACTION_CLEAR_GAME = "CLEAR-GAME";
 export const REDUCER_ACTION_BLOCK_UPDATE_DATA = "UPDATE-BLOCK-DATA";
 export const REDUCER_ACTION_DECLARE_WINNER = "DECLARE-WINNER";
 
+
+const PLAYER_ID_NAME_MAP: any = {
+	A: "1",
+	B: "2"
+};
+
+export const getDefaultPlayerName = (id: string) => `Anonymous player ${PLAYER_ID_NAME_MAP[id]}`;
+
 export const DEFAULT_BLOCK_LIST = [
 	{
 		ID: "00",
@@ -52,11 +60,11 @@ export const INITIAL_SESSION: ISessionState = {
 	playersList: [
 		{
 			ID: "A",
-			name: ""
+			name: getDefaultPlayerName("A")
 		},
 		{
 			ID: "B",
-			name: ""
+			name: getDefaultPlayerName("B")
 		}
 	],
 	blocksList: DEFAULT_BLOCK_LIST

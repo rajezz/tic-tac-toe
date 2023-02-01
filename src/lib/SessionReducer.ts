@@ -17,11 +17,8 @@ export function reducer(state: ISessionState, action: any): ISessionState {
 			return {
 				...state,
 				playersList: state.playersList.map((t) => {
-					if (t.ID === action.playerId) {
-						return {
-							...t,
-							name: action.playerName
-						};
+					if (t.ID === action.player.ID) {
+						return action.player;
 					} else return t;
 				})
 			};

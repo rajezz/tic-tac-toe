@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { REDUCER_ACTION_UPDATE_NAME } from "_data/session";
+import { REDUCER_ACTION_UPDATE_NAME, getDefaultPlayerName } from "_data/session";
+import { IPlayer } from '../../types/Game';
 
 function EditIcon() {
 	return (
@@ -32,14 +33,14 @@ const defaultPlayerName = (id: string) => `Anonymous player ${PLAYER_ID_NAME_MAP
 
 interface PlayerInfoProps {
 	currentPlayer: string;
-	playerId: string;
+	player: IPlayer;
 	sessionDispatch: any;
 }
 
-export default function PlayerInfo({ currentPlayer, playerId, sessionDispatch }: PlayerInfoProps) {
+export default function PlayerInfo({ currentPlayer, player, sessionDispatch }: PlayerInfoProps) {
 	const [playerEditStatus, setPlayerEditStatus] = useState(false);
 
-	const [playerName, setPlayerName] = useState(defaultPlayerName(playerId));
+	const [playerName, setPlayerName] = useState(player.name);
 
 	const playerNameChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setPlayerName(event.target.value);
@@ -50,17 +51,22 @@ export default function PlayerInfo({ currentPlayer, playerId, sessionDispatch }:
 			//Update button clicked....
 			sessionDispatch({
 				type: REDUCER_ACTION_UPDATE_NAME,
-				playerId,
-				playerName
+				player: {
+					ID: player.ID,
+					name: playerName
+				}
 			});
 		}
 		setPlayerEditStatus(!playerEditStatus);
 		if (playerName === "") {
-			setPlayerName(defaultPlayerName(playerId));
+			const name = getDefaultPlayerName(player.ID);
+			setPlayerName(name);
 			sessionDispatch({
 				type: REDUCER_ACTION_UPDATE_NAME,
-				playerId,
-				playerName: defaultPlayerName(playerId)
+				player: {
+					ID: player.ID,
+					name
+				}
 			});
 		}
 	};
@@ -74,9 +80,9 @@ export default function PlayerInfo({ currentPlayer, playerId, sessionDispatch }:
 	return (
 		<div
 			className={`player-info-panel ${
-				currentPlayer === playerId ? "currently-playing" : ""
+				currentPlayer === player.ID ? "currently-playing" : ""
 			}`}>
-			<div className="player-title">Player {PLAYER_ID_NAME_VERBAL_MAP[playerId]}
+			<div className="player-title">Player {PLAYER_ID_NAME_VERBAL_MAP[player.ID]}
 				<span className="notification-chip">Player rolling...</span>
 			</div>
 
