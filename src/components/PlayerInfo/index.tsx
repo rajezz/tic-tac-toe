@@ -23,14 +23,20 @@ const PLAYER_ID_NAME_MAP: any = {
 	B: "2"
 };
 
+const PLAYER_ID_NAME_VERBAL_MAP: any = {
+	A: "One",
+	B: "Two"
+};
+
 const defaultPlayerName = (id: string) => `Anonymous player ${PLAYER_ID_NAME_MAP[id]}`;
 
 interface PlayerInfoProps {
+	currentPlayer: string;
 	playerId: string;
 	sessionDispatch: any;
 }
 
-export default function PlayerInfo({ playerId, sessionDispatch }: PlayerInfoProps) {
+export default function PlayerInfo({ currentPlayer, playerId, sessionDispatch }: PlayerInfoProps) {
 	const [playerEditStatus, setPlayerEditStatus] = useState(false);
 
 	const [playerName, setPlayerName] = useState(defaultPlayerName(playerId));
@@ -57,27 +63,36 @@ export default function PlayerInfo({ playerId, sessionDispatch }: PlayerInfoProp
 				playerName: defaultPlayerName(playerId)
 			});
 		}
-    };
-    
-    const onKeyEnter = (e: any) => {
-        if (e.key === "Enter") {
-            playerEditStatusChanged();
-        }
-    };
+	};
+
+	const onKeyEnter = (e: any) => {
+		if (e.key === "Enter") {
+			playerEditStatusChanged();
+		}
+	};
 
 	return (
-		<div className="player-panel">
-			<input
-				type="text"
-				className={"edit-name"}
-				disabled={!playerEditStatus}
-				value={playerName}
-                onChange={playerNameChanged}
-                onKeyDown={onKeyEnter}
-			/>
-			<button className="icon-btn" onClick={playerEditStatusChanged}>
-				{playerEditStatus ? <DoneIcon /> : <EditIcon />}
-			</button>
+		<div
+			className={`player-info-panel ${
+				currentPlayer === playerId ? "currently-playing" : ""
+			}`}>
+			<div className="player-title">Player {PLAYER_ID_NAME_VERBAL_MAP[playerId]}
+				<span className="notification-chip">Player rolling...</span>
+			</div>
+
+			<div className="player-panel">
+				<input
+					type="text"
+					className={"edit-name"}
+					disabled={!playerEditStatus}
+					value={playerName}
+					onChange={playerNameChanged}
+					onKeyDown={onKeyEnter}
+				/>
+				<button className="icon-btn" onClick={playerEditStatusChanged}>
+					{playerEditStatus ? <DoneIcon /> : <EditIcon />}
+				</button>
+			</div>
 		</div>
 	);
 }

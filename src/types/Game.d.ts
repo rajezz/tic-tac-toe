@@ -17,7 +17,9 @@ export interface IGame {
 
 export interface ISessionState {
 	gameInProgress: boolean;
-	currentPlayer: any;
-	playersInfo: Array<IPlayer>;
-	blocksInfo: Array<IBlock>;
+	iteration: number;
+	winner: string;
+	currentPlayer: string;
+	playersList: Array<IPlayer>;
+	blocksList: Array<IBlock>;
 }

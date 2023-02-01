@@ -1,25 +1,49 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import Block from "components/Block";
 import { IPlayer, IBlock } from "types/Game";
-import { initialSession } from "_data/session";
+import { INITIAL_SESSION, REDUCER_ACTION_DECLARE_WINNER } from "_data/session";
 import { reducer } from "lib/SessionReducer";
 import Sidebar from "components/Sidebar";
+import { findWinner } from "../../lib/gameMechanics";
+import WinnerBanner from "components/WinnerBanner";
 
-const blocks: Array<string> = ["00", "01", "02", "10", "11", "12", "20", "21", "22"];
 
 export default function GameWindow() {
-	const [session, sessionDispatch] = useReducer(reducer, initialSession);
+	const [session, sessionDispatch] = useReducer(reducer, INITIAL_SESSION);
+
+	const inputProvided = (playerId: string, selectedLocation: string) => {};
+
+	useEffect(() => {
+		console.log("Board updated!!", session.iteration, session.blocksList);
+		if (session.iteration > 4) {
+			const [gameWon, winnerId] = findWinner(session.blocksList);
+			if (gameWon) {
+				const winner = session.playersList.find((e) => e.ID === winnerId)?.name;
+				sessionDispatch({ type: REDUCER_ACTION_DECLARE_WINNER, winner });
+			}
+		}
+	}, [session.blocksList]);
 
 	return (
 		<div className="main-content">
-			<Sidebar sessionDispatch={sessionDispatch} />
+			{session.winner !== "" ? (
+				<WinnerBanner winner={session.winner} sessionDispatch={sessionDispatch} />
+			) : (
+				""
+			)}
+			<Sidebar
+				currentPlayer={session.currentPlayer}
+				gameInProgress={session.gameInProgress}
+				sessionDispatch={sessionDispatch}
+			/>
 			<div className="game-board">
 				<div className="block-section">
-					{session.blocksInfo.map((val, index) => (
+					{session.blocksList.map((val, index) => (
 						<Block
 							key={index}
-							block={session.blocksInfo[index]}
-							currentPlayer={session.currentPlayer}
+							session={session}
+							block={session.blocksList[index]}
+							sessionDispatch={sessionDispatch}
 						/>
 					))}
 				</div>
