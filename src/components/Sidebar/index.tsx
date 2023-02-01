@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PlayerInfo from "components/PlayerInfo";
 import { REDUCER_ACTION_NEW_GAME, REDUCER_ACTION_CLEAR_GAME } from "_data/session";
 import { clearCriteria } from "lib/gameMechanics";
-import { IPlayer } from '../../types/Game';
+import { IPlayer } from "../../types/Game";
 
 interface SidebarProps {
 	currentPlayer: string;

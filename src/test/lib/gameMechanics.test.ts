@@ -37,7 +37,7 @@ const IncompleteBlockList = [
 describe("gameMechanics", () => {
 	beforeEach(() => {
 		clearCriteria();
-	})
+	});
 	it("'A' should be the winner", () => {
 		const [status, winner] = findWinner(AWinBlockList);
 		expect(status).to.equal(true);

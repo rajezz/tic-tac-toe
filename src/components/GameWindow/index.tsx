@@ -11,8 +11,6 @@ import WinnerBanner from "components/WinnerBanner";
 export default function GameWindow() {
 	const [session, sessionDispatch] = useReducer(reducer, INITIAL_SESSION);
 
-	const inputProvided = (playerId: string, selectedLocation: string) => {};
-
 	useEffect(() => {
 		console.log("Board updated!!", session.iteration, session.blocksList);
 		if (session.iteration > 4) {

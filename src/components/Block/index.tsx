@@ -3,7 +3,7 @@ import React from "react";
 // types
 import { IBlock } from "types/Game";
 import { REDUCER_ACTION_BLOCK_UPDATE_DATA } from "_data/session";
-import { ISessionState } from '../../types/Game';
+import { ISessionState } from "../../types/Game";
 
 interface BlockProps {
 	session: ISessionState;
@@ -31,7 +31,7 @@ export default function Block({ session, block, sessionDispatch }: BlockProps) {
 	const UserInputProvided = () => {
 		sessionDispatch({ type: REDUCER_ACTION_BLOCK_UPDATE_DATA, updatedBlock: {ID: block.ID, providedValue: session.currentPlayer }, currentPlayer: session.currentPlayer });
 		// inputProvided(currentPlayer, block.ID);
-	}
+	};
 
 	const displayIcon = () => {
 		if (block.providedValue != "") {
@@ -50,7 +50,7 @@ export default function Block({ session, block, sessionDispatch }: BlockProps) {
 			}
 			
 		}
-	}
+	};
 	return (
 		<button
 			className={`block ${session.currentPlayer}`}

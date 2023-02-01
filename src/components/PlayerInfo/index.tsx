@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { REDUCER_ACTION_UPDATE_NAME, getDefaultPlayerName } from "_data/session";
-import { IPlayer } from '../../types/Game';
+import { IPlayer } from "../../types/Game";
 
 function EditIcon() {
 	return (
