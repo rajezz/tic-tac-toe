@@ -9,6 +9,7 @@ body {
 	--theme-blue-100: #f1faff;
 	--theme-blue-200: #daf2ff;
 	--theme-blue-400: #0087cd;
+	--theme-blue-500: #007ec0;
 }
 
 body * {
@@ -105,7 +106,7 @@ button.block:disabled {
 }
 
 .current-player-icon svg {
-	fill: #007ec0;
+	fill: var(--theme-blue-500);
 }
 
 button.block:hover .current-player-icon,
@@ -199,6 +200,9 @@ button.block:disabled .current-player-icon {
 	width: 80%;
 	padding-left: 0.75rem;
 	margin-top: 2rem;
+	display: flex;
+    flex-direction: row;
+    align-content: center;
 }
 
 .notification-chip {
@@ -212,6 +216,15 @@ button.block:disabled .current-player-icon {
 	line-height: 22px;
 	display: none;
 	color: #00c66c;
+}
+
+.player-title .text {
+	line-height: 40px;
+}
+
+.player-icon-panel svg {
+	transform: scale(0.5);
+	fill: var(--theme-blue-500);
 }
 
 .player-info-panel.currently-playing .notification-chip {

@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
+
+// Components...
 import PlayerInfo from "components/PlayerInfo";
+
+// Data source...
 import { REDUCER_ACTION_NEW_GAME, REDUCER_ACTION_CLEAR_GAME } from "_data/session";
+
+// Library...
 import { clearCriteria } from "lib/gameMechanics";
-import { IPlayer } from "../../types/Game";
+
+// Types...
+import { IPlayer } from "types/Game";
 
 interface SidebarProps {
 	currentPlayer: string;

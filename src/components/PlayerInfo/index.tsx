@@ -1,35 +1,28 @@
 import React, { useState } from "react";
 
+// Components...
+import { EditIcon, DoneIcon, CircleIcon, CloseIcon } from "components/Icon";
+
+// Data source...
 import { REDUCER_ACTION_UPDATE_NAME, getDefaultPlayerName } from "_data/session";
-import { IPlayer } from "../../types/Game";
 
-function EditIcon() {
-	return (
-		<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20">
-			<path d="m16.208 7.604-3.75-3.771.98-1q.541-.541 1.291-.541.75 0 1.313.541l1.166 1.188q.542.521.532 1.292-.011.77-.532 1.291Zm-1.229 1.208-8.75 8.771H2.458v-3.75l8.771-8.771Z" />
-		</svg>
-	);
-}
+// Types...
+import { IPlayer } from "types/Game";
 
-function DoneIcon() {
-	return (
-		<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
-			<path d="m9.55 18.8-6.5-6.5 2.25-2.25 4.25 4.25 9.15-9.15 2.25 2.25Z" />
-		</svg>
-	);
-}
-
-const PLAYER_ID_NAME_MAP: any = {
-	A: "1",
-	B: "2"
+const playerIcons: any = {
+	"A": CloseIcon,
+	"B": CircleIcon
 };
+
+const dispatchPlayerIcon = (id: string): JSX.Element => {
+	const Icon = playerIcons[id];
+	return <Icon size={20} />;
+}; 
 
 const PLAYER_ID_NAME_VERBAL_MAP: any = {
 	A: "One",
 	B: "Two"
 };
-
-const defaultPlayerName = (id: string) => `Anonymous player ${PLAYER_ID_NAME_MAP[id]}`;
 
 interface PlayerInfoProps {
 	currentPlayer: string;
@@ -82,7 +75,9 @@ export default function PlayerInfo({ currentPlayer, player, sessionDispatch }: P
 			className={`player-info-panel ${
 				currentPlayer === player.ID ? "currently-playing" : ""
 			}`}>
-			<div className="player-title">Player {PLAYER_ID_NAME_VERBAL_MAP[player.ID]}
+			<div className="player-title">
+				<span className="text">Player {PLAYER_ID_NAME_VERBAL_MAP[player.ID]}</span>
+				<div className="player-icon-panel">{dispatchPlayerIcon(player.ID)}</div>
 				<span className="notification-chip">Player rolling...</span>
 			</div>
 

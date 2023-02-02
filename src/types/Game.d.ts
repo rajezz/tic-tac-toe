@@ -1,18 +1,15 @@
-const playerA: string = "A";
-const playerB: string = "B";
-
 export interface IBlock {
 	ID: string;
-	providedValue: "" | playerA | playerB;
+	providedValue: "" | "A" | "B";
 }
 
 export interface IPlayer {
-	ID: playerA | playerB;
+	ID: "A" | "B";
 	name: string;
 }
 
 export interface IGame {
-	currentPlayer: "" | playerA | playerB;
+	currentPlayer: "" | "A" | "B";
 }
 
 export interface ISessionState {

@@ -1,12 +1,13 @@
 import React from "react";
 
-import Layout from "layout/Layout";
+// Components...
 import GameWindow from "components/GameWindow";
+import Layout from "layout/Layout";
 
 export default function Page() {
-  return (
-    <Layout>
-      <GameWindow />
-    </Layout>
-  );
+	return (
+		<Layout>
+			<GameWindow />
+		</Layout>
+	);
 }

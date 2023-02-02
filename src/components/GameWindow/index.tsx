@@ -1,11 +1,16 @@
 import React, { useReducer, useEffect } from "react";
-import Block from "components/Block";
-import { IPlayer, IBlock } from "types/Game";
+
+// Data source...
 import { INITIAL_SESSION, REDUCER_ACTION_DECLARE_WINNER } from "_data/session";
-import { reducer } from "lib/SessionReducer";
+
+// Components...
+import Block from "components/Block";
 import Sidebar from "components/Sidebar";
-import { findWinner } from "../../lib/gameMechanics";
 import WinnerBanner from "components/WinnerBanner";
+
+// Library...
+import { reducer } from "lib/SessionReducer";
+import { findWinner } from "lib/gameMechanics";
 
 
 export default function GameWindow() {

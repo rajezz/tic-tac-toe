@@ -1,17 +1,5 @@
-import { IBlock } from "../types/Game";
-
-const WINNING_STRIKE_PROBABILITY = [
-	[0, 1, 2],
-	[3, 4, 5],
-	[6, 7, 8],
-	[0, 3, 6],
-	[1, 4, 7],
-	[2, 5, 8],
-	[0, 4, 8],
-	[2, 4, 6]
-];
-
-const IMPROBABILITY_CHECK_REGEX = /^(.*A.*B|.*B.*A).*$/g;
+import { IBlock } from "types/Game";
+import { IMPROBABILITY_CHECK_REGEX, WINNING_STRIKE_PROBABILITY } from "_data/session";
 
 let checkCritieria = [...WINNING_STRIKE_PROBABILITY];
 

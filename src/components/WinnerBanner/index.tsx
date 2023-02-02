@@ -1,5 +1,9 @@
 import React from "react";
+
+// Library...
 import { clearCriteria } from "lib/gameMechanics";
+
+// Data source...
 import { REDUCER_ACTION_NEW_GAME } from "_data/session";
 
 interface WinnerBannerProps {
